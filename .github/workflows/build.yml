@@ -21,4 +21,4 @@ jobs:
       run: dotnet restore 
       working-directory: src/SlackNotification
     - name: Build
-      run: dotnet build SlackNotification.sln --no-restore
+      run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
