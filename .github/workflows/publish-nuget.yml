@@ -20,11 +20,11 @@ jobs:
       run: dotnet restore
       working-directory: src/SlackNotification
     - name: Build
-      run: dotnet build src/ReviewFile.sln --no-restore
+      run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
     - name: Publish to NuGet
       uses: brandedoutcast/publish-nuget@v2
       with:
-        PROJECT_FILE_PATH:
-        VERSION_REGEX:
-        TAG_FORMAT:
+        PROJECT_FILE_PATH:src/SlackNotification/SlackNotification.csproj
+        VERSION_REGEX:'^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$'
+        TAG_FORMAT:'*'
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
