@@ -4,7 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>NugetSample_SlackNotification</PackageId>
-	  <Authors>sasaki_y</Authors>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Authors>sasaki_y</Authors>
     <Copyright>sasaki_y</Copyright>
 	<NeutralLanguage>ja</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/yus-sasaki/NugetSample/blob/main/LICENSE</PackageLicenseUrl>
@@ -15,7 +16,6 @@
     <PackageTags></PackageTags>
     <Title>NugetSample_SlackNotificatio</Title>
     <Description>NugetSample_SlackNotificatio</Description>
-    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
