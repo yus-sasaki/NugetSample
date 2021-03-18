@@ -6,9 +6,12 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
     - uses: actions/checkout@v2
       with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
     - name: Cache SonarCloud packages
         uses: actions/cache@v1
