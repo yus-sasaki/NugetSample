@@ -90,7 +90,7 @@ namespace SlackNotification
 			{
 				text = message,
 				username = userName,
-				channel = channelName
+				channel = channelName,
 			};
 
 			// 送信パラメータオブジェクトをJSONに変換
