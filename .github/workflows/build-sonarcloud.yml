@@ -15,8 +15,7 @@ jobs:
      - name: Install SonarScanner
        run: dotnet tool install --global dotnet-sonarscanner
      - name: Restore
-       run: dotnet restore
-       working-directory: src/SlackNotification
+       run: dotnet restore src/SlackNotification/SlackNotification.sln
  　　- name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
       env:
