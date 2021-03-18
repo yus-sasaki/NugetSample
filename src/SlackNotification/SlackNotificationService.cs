@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace SlackNotification
 {
 	/// <summary>
-	/// Slackに通知するサービス
+	/// Slackに通知するサービスを提供するクラス
 	/// </summary>
 	public class SlackNotificationService
 	{
