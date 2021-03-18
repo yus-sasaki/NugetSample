@@ -44,9 +44,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          - name: Restore dependencies
-            run: dotnet restore 
-            working-directory: src/SlackNotification
-          - name: Build
-            run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
+            dotnet build src/SlackNotification/SlackNotification.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
