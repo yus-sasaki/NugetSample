@@ -12,10 +12,10 @@ namespace SlackNotification.Tests
         {
             var slackNotificationService = new SlackNotificationService();
             var result = await slackNotificationService.Notify(
-	            "Test",
-	            @"https://hooks.slack.com/services/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",
-	            "sasaki_y",
-	            "sasaki_y");
+                "Test",
+                @"https://hooks.slack.com/services/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",
+                "sasaki_y",
+                "sasaki_y");
             Assert.IsFalse(result);
         }
     }
