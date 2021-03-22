@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SlackNotification.Tests
@@ -6,7 +7,7 @@ namespace SlackNotification.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public async void TestMethod1()
+        public async Task TestMethod1()
         {
 	        var slackNotificationService = new SlackNotificationService();
 	        var result = await slackNotificationService.Notify(
