@@ -24,3 +24,5 @@ jobs:
       working-directory: src/SlackNotification
     - name: Build
       run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
+    - name: Test
+      run: dotnet test src/SlackNotification/SlackNotification.sln
