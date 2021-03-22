@@ -19,7 +19,7 @@ jobs:
     - name: Restore
       run: dotnet restore src/SlackNotification/SlackNotification.sln
     - name: Test
-      run: dotnet test src/SlackNotification/SlackNotification.sln  /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="/coverage"
+      run: dotnet test src/SlackNotification/SlackNotification.sln  /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
       env:
