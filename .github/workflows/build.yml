@@ -26,4 +26,3 @@ jobs:
       run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
     - name: Test
       run: dotnet test src/SlackNotification/SlackNotification.sln --no-build --verbosity normal
-
