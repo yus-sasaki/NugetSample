@@ -16,8 +16,9 @@ jobs:
         dotnet-version: 3.1.x
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
-    - name: Install dotnet tools to generate test report
+    - name: Install Coverlet
       run: dotnet tool install --global coverlet.console
+    - name: Install package
       run: dotnet add package coverlet.msbuild
     - name: Restore
       run: dotnet restore src/SlackNotification/SlackNotification.sln
