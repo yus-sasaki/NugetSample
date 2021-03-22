@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using SlackNotification;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace NugetTests
+namespace SlackNotification.Tests
 {
     [TestClass]
     public class UnitTest1
@@ -11,7 +9,7 @@ namespace NugetTests
         public void TestMethod1()
         {
 	        var slackNotificationService = new SlackNotificationService();
-	        Assert.IsNotNull(slackNotificationService);
+            Assert.IsNotNull(slackNotificationService);
         }
     }
 }

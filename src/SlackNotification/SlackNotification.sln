@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlackNotification", "SlackNotification.csproj", "{F8BCB43D-C20A-4563-AA7D-10F1CE2BCB70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetTests", "..\NugetTests\NugetTests.csproj", "{C9532AEE-2BB5-4667-BFB3-785936E93BA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlackNotification.Tests", "..\SlackNotification.Tests\SlackNotification.Tests.csproj", "{B06661B2-BED6-4B41-B89A-1DA52C82EF2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F8BCB43D-C20A-4563-AA7D-10F1CE2BCB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8BCB43D-C20A-4563-AA7D-10F1CE2BCB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8BCB43D-C20A-4563-AA7D-10F1CE2BCB70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9532AEE-2BB5-4667-BFB3-785936E93BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9532AEE-2BB5-4667-BFB3-785936E93BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9532AEE-2BB5-4667-BFB3-785936E93BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9532AEE-2BB5-4667-BFB3-785936E93BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06661B2-BED6-4B41-B89A-1DA52C82EF2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06661B2-BED6-4B41-B89A-1DA52C82EF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06661B2-BED6-4B41-B89A-1DA52C82EF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06661B2-BED6-4B41-B89A-1DA52C82EF2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
