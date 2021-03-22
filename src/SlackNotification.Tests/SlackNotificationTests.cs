@@ -16,6 +16,7 @@ namespace SlackNotification.Tests
 	            @"https://hooks.slack.com/services/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",
 	            "sasaki_y",
 	            "sasaki_y");
+            Assert.IsFalse(result);
         }
     }
 }
