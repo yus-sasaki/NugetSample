@@ -20,9 +20,9 @@ jobs:
         dotnet-version: 3.1.x
     - name: Install dependencies
       run: dotnet restore
-      working-directory: src/SlackNotification
+      working-directory: src
     - name: Build
-      run: dotnet build src/SlackNotification/SlackNotification.sln --no-restore
+      run: dotnet build src --no-restore
     - name: Publish to NuGet
       uses: brandedoutcast/publish-nuget@v2
       with:
