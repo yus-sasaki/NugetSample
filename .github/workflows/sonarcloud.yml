@@ -9,6 +9,11 @@ on:
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+ 
+    # 環境変数
+    env:
+      # slnファイルの存在するフォルダの相対パス
+      SolutionPath: src
 
     # リポジトリの内容をチェックアウトする
     # fetch-depth に 0 を指定すると全タグ・全ブランチ・全履歴を取得するようになる
@@ -38,16 +43,16 @@ jobs:
         dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/*.csproj package coverlet.msbuild
     - name: Restore
-      run: dotnet restore src
+      run: dotnet restore ${{ env.SolutionPath }}
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Build
-      run: dotnet build src --configuration Release --no-restore
+      run: dotnet build ${{ env.SolutionPath }} --configuration Release --no-restore
     - name: Test
-      run: dotnet test src /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test ${{ env.SolutionPath }} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: End Sonar analysis
       run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       env:
