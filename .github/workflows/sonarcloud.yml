@@ -16,10 +16,14 @@ jobs:
         dotnet-version: 3.1.x
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
-    - name: Package Add coverlet.msbuild in SlackNotification.Tests
-      run: dotnet add src/SlackNotification.Tests/*.Tests.csproj package coverlet.msbuild
-    - name: Package Add coverlet.msbuild in NugetTest.Tests
-      run: dotnet add src/NugetTest.Tests/*.Tests.csproj package coverlet.msbuild
+
+    # Testプロジェクトに対してcoverlet.msbuildをインストールします。
+    # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
+    - name: Package Add coverlet.msbuild
+      run:　|
+        dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild
+        dotnet add src/NugetTest.Tests/*.csproj package coverlet.msbuild
+
     - name: Restore
       run: dotnet restore src
     - name: Begin Sonar analysis
