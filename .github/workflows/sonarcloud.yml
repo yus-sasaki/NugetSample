@@ -17,7 +17,7 @@ jobs:
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
     - name: Package coverlet.msbuild
-      run: dotnet add src/SlackNotification.Tests/SlackNotification.Tests.csproj package coverlet.msbuild --version 3.0.3
+      run: dotnet add src/**/*.Tests.csproj package coverlet.msbuild --version 3.0.3
     - name: Restore
       run: dotnet restore src
     - name: Begin Sonar analysis
