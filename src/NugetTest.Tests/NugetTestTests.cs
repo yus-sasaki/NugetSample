@@ -2,10 +2,10 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SlackNotification;
 
-namespace TestProject1
+namespace NugetTest.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class NugetTestTests
     {
         [TestMethod]
         public async Task TestMethod1()
