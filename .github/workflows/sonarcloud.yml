@@ -16,8 +16,8 @@ jobs:
         dotnet-version: 3.1.x
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
-    - name: Package coverlet.msbuild
-      run: dotnet add src/**/*.Tests.csproj package coverlet.msbuild --version 3.0.3
+    - name: Package Add coverlet.msbuild in TestProjects
+      run: dotnet add src/**/*.Tests.csproj package coverlet.msbuild
     - name: Restore
       run: dotnet restore src
     - name: Begin Sonar analysis
