@@ -1,7 +1,9 @@
 name: SonarCloud
 # ワークフローが動作する条件を指定する
 # 下記設定はmainブランチに対してsrcフォルダ以下を変更したプッシュあるいはプルリクエストをトリガとする
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 # 仮想環境で行わせる動作を記述する
 jobs:
