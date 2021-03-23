@@ -43,7 +43,7 @@ jobs:
         dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/*.csproj package coverlet.msbuild
     - name: Restore
-      run: dotnet restore ${{ env.SolutionPath }}
+      run: dotnet restore ${ env.SolutionPath }
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
