@@ -19,7 +19,7 @@ jobs:
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
     - name: Package coverlet.msbuild
-      run: dotnet add package coverlet.msbuild
+      run: dotnet add package coverlet.msbuild --version 3.0.3
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
