@@ -20,10 +20,9 @@ jobs:
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
     - name: Package Add coverlet.msbuild
-      run:　| 
-        dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild 
+      run: | 
+        dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/*.csproj package coverlet.msbuild
-
     - name: Restore
       run: dotnet restore src
     - name: Begin Sonar analysis
