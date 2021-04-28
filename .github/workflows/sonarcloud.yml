@@ -1,5 +1,6 @@
 name: SonarCloud
 # ワークフローが動作する条件を指定する
+# 下記設定はmainブランチに対してsrcフォルダ以下を変更したプッシュあるいはプルリクエストをトリガとする
 on:
   push:
   workflow_dispatch:
@@ -15,7 +16,9 @@ jobs:
       SolutionPath: src
 
     # リポジトリの内容をチェックアウトする
-    # エラーになるためfetch-depth に 0 を指定し全タグ・全ブランチ・全履歴を取得するように設定
+    # fetch-depth に 0 を指定すると全タグ・全ブランチ・全履歴を取得するようになる
+    # デフォルトでは指定されたブランチの先頭コミットのみ取得しており、
+    # 場合によってはコマンドがエラーとなるため実行時間を短縮したいといった理由がなければ指定を推奨
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -33,39 +36,23 @@ jobs:
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
 
-    # Testプロジェクトに対してcoverlet.msbuildをインストールする
-    # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要がある
+    # Testプロジェクトに対してcoverlet.msbuildをインストールします。
+    # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
     - name: Package Add coverlet.msbuild
       run: | 
         dotnet add src/SlackNotification.Tests/*.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/*.csproj package coverlet.msbuild
-
-    # 依存関係を復元する
     - name: Restore
       run: dotnet restore ${{ env.SolutionPath }}
-
-    # 解析を開始する
-    #   k:SonarCloudで設定したプロジェクトキー
-    #   o:SonarCloudで設定した組織
-    #   d:sonar.login:SonarCloudへの認証に必要なトークンを指定する（この引数を指定した場合は終了ステップにも追加する必要がある）
-    #   d:sonar.host.url:SonarCloudのURL
-    #   d:sonar.cs.opencover.reportsPaths:カバレッジレポートへのパスを指定する（SonarCloudに出力するカバレッジレポートを指定）
     - name: Begin Sonar analysis
       run: dotnet sonarscanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
     - name: Build
       run: dotnet build ${{ env.SolutionPath }} --configuration Release --no-restore
-
-    # テスト時にカバレッジレポートを出力するようにオプションを指定する
-    #   /p:CollectCoverage=true:コードカバレッジを有効化し、カバレッジレポートを出力するようにする
-    #   /p:CoverletOutputFormat=opencover:出力するカバレッジレポートの種類を指定
     - name: Test
       run: dotnet test ${{ env.SolutionPath }} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-
-    # 解析を終了する
     - name: End Sonar analysis
       run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       env:
