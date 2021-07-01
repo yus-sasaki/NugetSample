@@ -34,7 +34,7 @@ jobs:
 
     # SonarScannerをインストールする
     - name: Install SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner
+      run: dotnet tool install --global dotnet-sonarscanner --version 4.8.0
 
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
