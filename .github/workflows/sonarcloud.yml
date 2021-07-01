@@ -8,7 +8,7 @@ on:
 # 仮想環境で行わせる動作を記述する
 jobs:
   sonarcloud:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
  
     # 環境変数
     env:
