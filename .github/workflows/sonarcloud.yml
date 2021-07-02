@@ -37,6 +37,21 @@ jobs:
       with:
         dotnet-version: 3.1.x
 
+    # 高速化のためキャッシュに入れる
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v1
+      with:
+        path: ~\sonar\cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+    - name: Cache SonarCloud scanner
+      id: cache-sonar-scanner
+      uses: actions/cache@v1
+      with:
+        path: .\.sonar\scanner
+        key: ${{ runner.os }}-sonar-scanner
+        restore-keys: ${{ runner.os }}-sonar-scanner
+        
     # SonarScannerをインストールする
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner --version 4.8.0
