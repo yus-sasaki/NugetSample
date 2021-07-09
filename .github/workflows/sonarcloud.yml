@@ -44,13 +44,13 @@ jobs:
       id: cache-sonar-scanner
       uses: actions/cache@v1
       with:
-        path: SonarScanner
+        path: ${{ env.SonarScanner }}
         key: dotnet-sonar-scanner
         
     # SonarScannerをインストールする
     - name: Install SonarScanner
       if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      run: dotnet tool update dotnet-sonarscanner --tool-path SonarScanner
+      run: dotnet tool update dotnet-sonarscanner --tool-path ${{ env.SonarScanner }}
 
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
@@ -63,7 +63,7 @@ jobs:
       run: dotnet restore ${{ env.SolutionPath }}
       
     - name: Begin Sonar analysis
-      run: SonarScanner begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+      run: ${{ env.SonarScanner }} begin /k:"yus-sasaki_NugetSample" /o:"yus-sasaki" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -74,7 +74,7 @@ jobs:
       run: dotnet test ${{ env.SolutionPath }} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
       
     - name: End Sonar analysis
-      run: SonarScanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      run: ${{ env.SonarScanner }} end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
