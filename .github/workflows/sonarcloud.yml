@@ -50,7 +50,7 @@ jobs:
     # SonarScannerをインストールする
     - name: Install SonarScanner
       if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      run: dotnet tool update dotnet-sonarscanner --tool-path ${{ env.SonarScanner }}
+      run: dotnet tool install --global dotnet-sonarscanner
 
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
