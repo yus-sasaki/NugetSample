@@ -16,11 +16,7 @@ jobs:
       SolutionPath: src
     
     steps:
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.11
-
+    
     # リポジトリの内容をチェックアウトする
     # fetch-depth に 0 を指定すると全タグ・全ブランチ・全履歴を取得するようになる
     # デフォルトでは指定されたブランチの先頭コミットのみ取得しており、
@@ -36,32 +32,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
-
-  install:
-    needs: [setup]
-    runs-on: windows-latest
-    steps:   
-
-    # SonarScannerをインストールする
-    - name: Install SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner
-  
-  pakageadd :
-    needs: [setup]
-    runs-on: windows-latest
-    steps:
-
+    
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
     - name: Package Add coverlet.msbuild
       run: | 
         dotnet add src/SlackNotification.Tests/SlackNotification.Tests.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/NugetTest.Tests.csproj package coverlet.msbuild
-
-  sonarcloud:
-    needs: [install, pakageadd]
-    runs-on: windows-latest
-    steps:
 
     - name: Restore
       run: dotnet restore ${{ env.SolutionPath }}
@@ -83,3 +60,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  install:
+    runs-on: windows-latest
+    steps:   
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+        
+    # SonarScannerをインストールする
+    - name: Install SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
