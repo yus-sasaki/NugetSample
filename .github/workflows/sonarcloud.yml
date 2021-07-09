@@ -78,7 +78,7 @@ jobs:
     - name: Test
       run: dotnet test ${{ env.SolutionPath }} /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: End Sonar analysis
-      run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+      run: .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
