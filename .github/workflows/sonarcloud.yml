@@ -7,7 +7,7 @@ on:
 
 # 仮想環境で行わせる動作を記述する
 jobs:
-  sonarcloud:
+  setup:
     runs-on: windows-latest
  
     # 環境変数
@@ -36,10 +36,18 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
-        
+
+  install:
+    needs: [setup]
+    steps:     
+
     # SonarScannerをインストールする
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
+  
+  pakageadd :
+    needs: [setup]
+    steps:
 
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
@@ -47,7 +55,11 @@ jobs:
       run: | 
         dotnet add src/SlackNotification.Tests/SlackNotification.Tests.csproj package coverlet.msbuild
         dotnet add src/NugetTest.Tests/NugetTest.Tests.csproj package coverlet.msbuild
-        
+
+  sonarcloud:
+    needs: [install, pakageadd]
+    steps:
+
     - name: Restore
       run: dotnet restore ${{ env.SolutionPath }}
       
