@@ -39,7 +39,8 @@ jobs:
 
   install:
     needs: [setup]
-    steps:     
+    runs-on: windows-latest
+    steps:   
 
     # SonarScannerをインストールする
     - name: Install SonarScanner
@@ -47,6 +48,7 @@ jobs:
   
   pakageadd :
     needs: [setup]
+    runs-on: windows-latest
     steps:
 
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
@@ -58,6 +60,7 @@ jobs:
 
   sonarcloud:
     needs: [install, pakageadd]
+    runs-on: windows-latest
     steps:
 
     - name: Restore
