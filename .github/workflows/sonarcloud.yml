@@ -37,7 +37,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-        
+    
+    - name: Cache node_modules
+      id: SonarScanner_cache_id
+      uses: actions/cache@v2
+      with:
+        path: $HOME/.dotnet/tools
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.sha }}
+    
     # SonarScannerをインストールする
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
