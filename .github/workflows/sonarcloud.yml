@@ -37,19 +37,17 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-        
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.nuget/packages
-          !~/.nuget/packages/unwanted
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
     
+    - name: Cache SonarScanner
+      id: cache-sonarscanner
+      uses: actions/cache@v2
+      with:
+        path: ~/.dotnet/tools
+        key: ${{ runner.os }}-SonarScanner
+
     # SonarScannerをインストールする
     - name: Install SonarScanner
-      if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+      if: steps.cache-sonarscanner.outputs.cache-hit != 'true'
       run: dotnet tool install --global dotnet-sonarscanner
     
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
