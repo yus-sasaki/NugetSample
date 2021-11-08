@@ -32,6 +32,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+        
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+        
+    # SonarScannerをインストールする
+    - name: Install SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
     
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
     # dotnet add packageは1回のコマンドで複数プロジェクトへの動作をサポートしていないためTestプロジェクトの数だけコマンドを追記する必要があります。
@@ -60,15 +69,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  install:
-    runs-on: windows-latest
-    steps:   
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.11
-        
-    # SonarScannerをインストールする
-    - name: Install SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner
