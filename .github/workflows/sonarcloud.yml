@@ -47,6 +47,7 @@ jobs:
     
     # SonarScannerをインストールする
     - name: Install SonarScanner
+      if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
       run: dotnet tool install --global dotnet-sonarscanner
     
     # Testプロジェクトに対してcoverlet.msbuildをインストールします。
