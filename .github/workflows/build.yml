@@ -31,8 +31,9 @@ jobs:
     - name: Add Source
       run: dotnet nuget add source "https://nuget.pkg.github.com/miles-team/index.json" -n github -u ${{ secrets.NUGET_GITHUB_USER }} -p ${{ secrets.NUGET_GITHUB_TOKEN }} --store-password-in-clear-text
     - name: Restore dependencies
-      run: dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://nuget.pkg.github.com/miles-team/index.json"
       working-directory: src
+      run: dotnet restore -s "https://api.nuget.org/v3/index.json" -s "https://nuget.pkg.github.com/miles-team/index.json"
+
     - name: Build
       run: dotnet build src --no-restore
     - name: Test
