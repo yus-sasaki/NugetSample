@@ -1,6 +1,8 @@
 on:
-  pull_request:
-    types: [opened]
+  workflow_dispatch:
+#  workflow_run:
+#  pull_request:
+#    types: [opened]
 name: Pull Request
 jobs:
   assignAuthor:
