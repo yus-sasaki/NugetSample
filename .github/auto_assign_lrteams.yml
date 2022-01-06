@@ -15,11 +15,9 @@ numberOfReviewers: 0
 
 # A list of assignees, overrides reviewers if set
 assignees:
+  - yus-sasaki
 
 # A number of assignees to add to the pull request
 # Set to 0 to add all of the assignees.
 # Uses numberOfReviewers if unset.
 numberOfAssignees: 0
-
-# Set addAssignees to 'author' to set the PR creator as the assignee.
-addAssignees: author
