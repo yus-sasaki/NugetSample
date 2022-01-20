@@ -1,8 +1,13 @@
 addReviewers: true
+
 addAssignees: author
+
 reviewers:
   - yus-sasaki
+ 
 numberOfReviewers: 0
+
 assignees:
   - yus-sasaki
- numberOfAssignees: 0
+
+numberOfAssignees: 0
