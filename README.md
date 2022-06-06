@@ -10,8 +10,3 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=yus-sasaki_NugetSample&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=yus-sasaki_NugetSample)  
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yus-sasaki_NugetSample&metric=coverage)](https://sonarcloud.io/dashboard?id=yus-sasaki_NugetSample)  
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=yus-sasaki_NugetSample&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=yus-sasaki_NugetSample)
-
-
-
-
-
