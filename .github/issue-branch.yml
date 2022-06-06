@@ -1,3 +1,3 @@
-branchName: tiny
+branchName: '${issue.number}-${issue.title,}'
 silent: false
 autoCloseIssue: true
