@@ -16,7 +16,8 @@ branchName: 'issue-${issue.number}'
 
 autoCloseIssue: true
 
-# ブランチ作成後に”Branch ${branchName} created!”とIssueのコメントに通知してくれる機能の有効無効
+# trueの場合、Issue作成後、コメントを作成しないと自動ブランチ作成が行われない
+# falseの場合、Assigneesが入れば自動でブランチが作成される。(IssuesAssignAuthor.ymlと組み合わせることでアサインも自動化可能)
 
-silent: true
+silent: false
 
