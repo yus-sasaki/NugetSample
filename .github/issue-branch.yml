@@ -18,5 +18,5 @@ autoCloseIssue: true
 
 # ブランチ作成後に”Branch ${branchName} created!”とIssueのコメントに通知してくれる機能の有効無効
 
-silent: false
+silent: true
 
