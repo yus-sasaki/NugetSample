@@ -115,5 +115,56 @@ namespace SlackNotification
         }
 
         #endregion
+
+        #region 重複確認
+
+        /// <summary>
+        /// メッセージを通知する
+        /// </summary>
+        /// <param name="message">メッセージ</param>
+        /// <param name="webhookUrl">webhookUrl</param>
+        /// <param name="userName">ユーザー名</param>
+        /// <param name="channelName">チャンネル名(チャンネル名が指定可能なツールのみ対応)</param>
+        /// <param name="mention">メンションを付けるか(メンションが可能なツールのみ対応)</param>
+        /// <returns>通知に成功したか</returns>
+        public async Task<bool> Notify_Duplicate(string message, string webhookUrl, string userName,
+            string channelName, bool mention = true)
+        {
+            // 先頭にChannelメンションを付ける
+            if (mention)
+            {
+                message = $"{ChannelMention}{Environment.NewLine}{message}";
+            }
+
+            // 送信パラメータを作成
+            var slackPayload = new SlackPayload()
+            {
+                text = message,
+                username = userName,
+                channel = channelName,
+            };
+
+            // 送信パラメータオブジェクトをJSONに変換
+            var jsonSlackPayload = JsonConvert.SerializeObject(slackPayload);
+
+            // Jsonの送信パラメータ情報をURLに変換
+            var slackPayloadDictionary = new Dictionary<string, string>()
+            {
+                {PayloadKeyValue, jsonSlackPayload}
+            };
+            var urlParameter = new FormUrlEncodedContent(slackPayloadDictionary);
+
+            try
+            {
+                var response = await _HttpClient.PostAsync(webhookUrl, urlParameter).ConfigureAwait(false);
+                return (response.StatusCode == HttpStatusCode.OK);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
