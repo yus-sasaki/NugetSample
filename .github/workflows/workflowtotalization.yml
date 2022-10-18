@@ -10,11 +10,15 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+      - run: npm install @octokit/action
+      
       - uses: actions/github-script@v6
         with:
           script: |
-            const octokit = new Octokit({
-              auth: context.github.token
-            })
+            const octokit = require("@octokit/action");
             const workflows = await octokit.request('GET /repos/context.github.repository_owner/context.github.repository/actions/workflows')
             console.log(workflows)
