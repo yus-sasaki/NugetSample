@@ -16,5 +16,5 @@ jobs:
             const octokit = new Octokit({
               auth: context.github.token
             })
-            const workflows = await octokit.request('GET /repos/context.github.repository_owner/context.github.repository/actions/workflows'})
+            const workflows = await octokit.request('GET /repos/context.github.repository_owner/context.github.repository/actions/workflows')
             console.log(workflows)
