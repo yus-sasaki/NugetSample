@@ -10,6 +10,7 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/github-script@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
