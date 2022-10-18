@@ -10,17 +10,11 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/github-script@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           script: |
             const octokit = new Octokit({
-              auth: ${GITHUB_TOKEN}
+              auth: context.github.token
             })
-            const workflows = await octokit.request('GET /repos/{owner}/{repo}/actions/workflows', {
-              owner: context.github.repository_owner
-              repo: context.github.repository
-            })
+            const workflows = await octokit.request('GET /repos/context.github.repository_owner/context.github.repository/actions/workflows'})
             console.log(workflows)
