@@ -15,10 +15,11 @@ jobs:
         with:
           version: 12
       - run: npm install @octokit/action
-      
+    
       - uses: actions/github-script@v6
         with:
           script: |
+            const { Octokit } = require("@octokit/rest");
             const octokit = new Octokit({
               auth: context.github.token
             })
