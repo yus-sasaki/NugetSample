@@ -17,11 +17,11 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
-            let output;
+            let output = "";
             for(let workflow of result.data.workflows){
-              output += workflow.id + "\n";
-              output += workflow.name + "\r\n";
-              output += workflow.path + "\r";
+              output += workflow.id + "  ";
+              output += workflow.name + "\n  ";
+              output += workflow.path + "  \n";
             }
             await core.summary
               .addHeading('Workflows report')
