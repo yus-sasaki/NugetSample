@@ -19,7 +19,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const workflows = github.acrion.listRepoWorkflows({
+            const workflows = github.actions.listRepoWorkflows({
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
