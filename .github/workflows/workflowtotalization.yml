@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           version: 12
       - run: npm install @octokit/action
@@ -23,7 +23,7 @@ jobs:
             const octokit = new Octokit({
               auth: context.github.token
             });
-            const workflows = await octokit.request('GET /repos/{owner}/{repo}/actions/workflows', {
+            const workflows = await octokit.request('GET /repos/{owner}/{repo}/actions/workflows',{
               owner: context.github.repository_owner
               repo: context.github.repository
             });
