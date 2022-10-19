@@ -19,9 +19,9 @@ jobs:
             })
             let output = "";
             for(let workflow of result.data.workflows){
-              output += workflow.id + "  ";
+              output += workflow.id + "<br>";
               output += workflow.name + "\n  ";
-              output += workflow.path + "  \n";
+              output += workflow.path + "<br>";
             }
             await core.summary
               .addHeading('Workflows report')
