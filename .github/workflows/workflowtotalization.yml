@@ -20,10 +20,9 @@ jobs:
             const list = result.data.workflows;
             console.log(JSON.stringify(list));
             const output = "XXX";
-            for(let workflow in list){
-              output = output + "1つ";
-              output = output + workflow.id + "\n";
-              output = output + workflow.name + "\n";
+            for(let workflow of list){
+              output += workflow.id + "\n";
+              output += workflow.name + "\n";
             }
             await core.summary
               .addHeading('Workflows report')
