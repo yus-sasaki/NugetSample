@@ -19,8 +19,12 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const workflows = github.actions.listRepoWorkflows({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            const octokit = new Octokit({
+              auth: "${{ secrets.GITHUB_TOKEN }}"
             })
+            const workflows = await octokit.request('GET /repos/{owner}/{repo}/actions/workflows', {
+              owner: context.github.repository_owner
+              repo: context.github.repository
+            })
+            
             console.log(workflows)
