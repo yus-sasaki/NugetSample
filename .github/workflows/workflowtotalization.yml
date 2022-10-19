@@ -17,8 +17,12 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
+            const output = "";
             for(workflow in result.workflows){
-              console.log(workflow.id);
-              console.log(workflow.name);
+              output += workflow.id + "\n";
+              output += workflow.name + "\n";
             }
-            
+            await core.summary
+              .addHeading('Workflows report')
+              .addRaw(output)
+              .write()
