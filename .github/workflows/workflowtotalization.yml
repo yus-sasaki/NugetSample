@@ -17,4 +17,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
-            console.log(workflows);
+            for(workflow in workflows){
+              console.log(workflow.id);
+              console.log(workflow.name);
+            }
+            
