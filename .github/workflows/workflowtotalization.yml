@@ -19,6 +19,7 @@ jobs:
             })
             const output = "";
             for(workflow in result.workflows){
+              output += "1つ";
               output += workflow.id + "\n";
               output += workflow.name + "\n";
             }
