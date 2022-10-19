@@ -2,6 +2,8 @@ name: workflow totalization
 
 on:
   workflow_dispatch:
+  issues:
+    types: [opened]
 
 permissions:
   contents: read
@@ -19,12 +21,9 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const { Octokit } = require("@octokit/rest");
-            const octokit = new Octokit({
-              auth: context.github.token
-            });
-            const workflows = await octokit.request('GET /repos/{owner}/{repo}/actions/workflows',{
-              owner: context.github.repository_owner
-              repo: context.github.repository
-            });
-            console.log(workflows);
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
