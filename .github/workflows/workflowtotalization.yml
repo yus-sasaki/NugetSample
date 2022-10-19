@@ -20,7 +20,8 @@ jobs:
             let output;
             for(let workflow of result.data.workflows){
               output += workflow.id + "\n";
-              output += workflow.name + \n;
+              output += workflow.name + "\r\n";
+              output += workflow.path + "\r";
             }
             await core.summary
               .addHeading('Workflows report')
