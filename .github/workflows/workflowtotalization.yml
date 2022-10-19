@@ -17,9 +17,10 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
-            console.log(JSON.stringify(result.data));
+            const list = result.data.workflows;
+            console.log(JSON.stringify(list));
             const output = "XXX";
-            for(const workflow of result){
+            for(const workflow of list){
               output = output + "1つ";
               output = output + workflow.id + "\n";
               output = output + workflow.name + "\n";
