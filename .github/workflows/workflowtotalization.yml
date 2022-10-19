@@ -2,8 +2,6 @@ name: workflow totalization
 
 on:
   workflow_dispatch:
-  issues:
-    types: [opened]
 
 permissions:
   contents: read
@@ -11,13 +9,7 @@ permissions:
 jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 12
-      - run: npm install @octokit/action
-    
+    steps:   
       - uses: actions/github-script@v6
         with:
           script: |
@@ -25,3 +17,4 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             })
+            consol.log(workflows);
