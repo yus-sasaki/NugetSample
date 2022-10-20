@@ -31,7 +31,7 @@ jobs:
               var date1 = new Date(run.data.jobs[0].started_at);
               var date2 = new Date(run.data.jobs[0].completed_at);
 
-              output +=  id + " : " + (date2.getTime() - date1.getTime()) + "<br>";
+              output +=  workflow.name + " : " + (date2.getTime() - date1.getTime()) + "<br>";
             }
             
             await core.summary
