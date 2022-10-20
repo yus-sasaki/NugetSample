@@ -39,7 +39,6 @@ jobs:
             
             let output = "";
             for(let key of worlflows){
-            {
               output += key + " : " + worlflows[key] + "<br>";
             }
             
