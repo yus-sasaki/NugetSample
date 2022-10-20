@@ -18,6 +18,8 @@ jobs:
               repo: context.repo.repo,
               created: '2022-10-20T00:00:00Z'
             })
+            console.log(JSON.stringify(result));
+            
             let output = "";
             for(let workflow of result.data.workflow_runs){
               output += workflow.name + ":";
