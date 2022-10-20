@@ -27,8 +27,8 @@ jobs:
                 repo: context.repo.repo,
                 workflow_id: workflow.id,
               });
-              
-              console.log(JSON.stringify(usage));
+              output += JSON.stringify(usage);
+              #console.log(JSON.stringify(usage));
             }
             await core.summary
               .addHeading('Workflows report')
