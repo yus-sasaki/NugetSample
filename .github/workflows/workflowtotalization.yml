@@ -20,7 +20,7 @@ jobs:
             })
             
             var worlflows = {};
-            var output = "";
+            let output = "";
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
               const run = await github.rest.actions.listJobsForWorkflowRun({
