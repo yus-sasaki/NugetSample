@@ -13,19 +13,15 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const runresult = await github.rest.actions.listWorkflowRunsForRepo({
+            const result = await github.rest.actions.listWorkflowRunsForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-            })
-            console.log(JSON.stringify(runresult));
-            const result = await github.rest.actions.listRepoWorkflows({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              created: '2022-10-20T00:00:00Z'
             })
             let output = "";
-            for(let workflow of result.data.workflows){
+            for(let workflow of result.data.workflow_runs){
               output += workflow.name + ":";
-              output += workflow.id + "<br>";
+              output += workflow.workflow_id + "<br>";
               
             }
             await core.summary
