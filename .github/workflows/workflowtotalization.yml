@@ -30,9 +30,8 @@ jobs:
               });              
               var date1 = new Date(run.data.jobs[0].started_at);
               var date2 = new Date(run.data.jobs[0].completed_at);
-              worlflows[id] += (date2.getTime() - date1.getTime());
-              
-              output +=  id + " : " + worlflows[id] + "<br>";
+
+              output +=  id + " : " + (date2.getTime() - date1.getTime()) + "<br>";
             }
             
             await core.summary
