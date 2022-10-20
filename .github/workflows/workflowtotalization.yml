@@ -21,7 +21,7 @@ jobs:
             var worlflows = {};
             let output = "";
             for(let workflow of result.data.workflow_runs){
-              let id = workflow.id.toString();
+              let id = workflow.id;
               if(!worlflows[id]){
                 worlflows[id] = 0;
               }
@@ -35,10 +35,10 @@ jobs:
               console.log(JSON.stringify(run.data.jobs.started_at));
               console.log(JSON.stringify(run.data.jobs.completed_at));
               
-              var date1 = new Date(run.data.jobs.started_at.toString());
-              console.log(data1.toString());
-              var date2 = new Date(run.data.jobs.completed_at.toString());
-              console.log(data2.toString());
+              var date1 = new Date(run.data.jobs.started_at;
+              console.log(data1);
+              var date2 = new Date(run.data.jobs.completed_at);
+              console.log(data2);
               worlflows[id] += date2.getTime() - date1.getTime();
 
               output += workflow.name + ":";
