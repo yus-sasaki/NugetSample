@@ -25,7 +25,7 @@ jobs:
               const usage = await github.rest.actions.listWorkflowRunArtifacts({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: workflow.id,
+                run_id: workflow.id,
               });
               
               console.log(JSON.stringify(usage));
