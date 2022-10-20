@@ -18,10 +18,16 @@ jobs:
               repo: context.repo.repo,
               created: '>2022-10-19'
             })
-            console.log(JSON.stringify(result));
-            
+            var worlflows = {};
             let output = "";
             for(let workflow of result.data.workflow_runs){
+             const usage = await github.rest.actions.getWorkflowRunUsage({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: workflow.id,
+              });
+              console.log(JSON.stringify(usage));
+              
               output += workflow.name + ":";
               output += workflow.workflow_id + "<br>";
               
