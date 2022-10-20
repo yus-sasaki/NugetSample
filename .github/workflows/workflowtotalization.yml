@@ -22,7 +22,7 @@ jobs:
             let output = "";
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
-              if(!worlflows[id]){
+              if(!(id in worlflows)){
                 worlflows[id] = 0;
               }
 
@@ -33,14 +33,14 @@ jobs:
               });              
               var date1 = new Date(run.data.jobs[0].started_at);
               var date2 = new Date(run.data.jobs[0].completed_at);
-              console.log(JSON.stringify(date1));
-              console.log(JSON.stringify(date2));
               worlflows[id] += (date2.getTime() - date1.getTime());
-
-              output += workflow.name + ":";
-              output += workflow.workflow_id + "<br>";
-              output += worlflows[id] + "<br>";
             }
+            
+            for(key i of worlflows)
+            {
+              output += key + " : " + worlflows[i] + "<br>";
+            }
+            
             await core.summary
               .addHeading('Workflows report')
               .addRaw(output)
