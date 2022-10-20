@@ -22,7 +22,7 @@ jobs:
             var worlflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
-              if(!worlflows[id]){
+              if(!(id in worlflows)){
                 worlflows[id] = 0;
               }
               console.log(worlflows[id]);
@@ -38,9 +38,9 @@ jobs:
             }
             
             let output = "";
-            for(key i of worlflows)
+            for(let key of worlflows){
             {
-              output += key + " : " + worlflows[i] + "<br>";
+              output += key + " : " + worlflows[key] + "<br>";
             }
             
             await core.summary
