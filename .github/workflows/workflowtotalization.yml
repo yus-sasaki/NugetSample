@@ -22,7 +22,7 @@ jobs:
               output += workflow.name + ":";
               output += workflow.id + "<br>";
               
-              const usage = await github.rest.actions.getWorkflowUsage({
+              const usage = await github.rest.actions.listWorkflowRunArtifacts({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: workflow.id,
