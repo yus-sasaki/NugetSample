@@ -18,13 +18,14 @@ jobs:
               repo: context.repo.repo,
               created: '>2022-10-19'
             })
+            
             var worlflows = {};
-            let output = "";
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
-              if(!(id in worlflows)){
+              if(!worlflows[id]){
                 worlflows[id] = 0;
               }
+              console.log(worlflows[id]);
 
               const run = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
@@ -36,6 +37,7 @@ jobs:
               worlflows[id] += (date2.getTime() - date1.getTime());
             }
             
+            let output = "";
             for(key i of worlflows)
             {
               output += key + " : " + worlflows[i] + "<br>";
