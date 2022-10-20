@@ -26,7 +26,6 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: workflow.id,
-                filter: latest,
               });
               console.log(JSON.stringify(usage));
             }
