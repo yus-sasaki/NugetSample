@@ -16,7 +16,7 @@ jobs:
             const result = await github.rest.actions.listWorkflowRunsForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              created: '>2022-10-20'
+              created: '>2022-10-19'
             })
             var worlflows = {};
             let output = "";
