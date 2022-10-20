@@ -13,6 +13,12 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
+            const runresult = await github.rest.actions.listWorkflowRunsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            })
+            console.log(JSON.stringify(runresult));
+          
             const result = await github.rest.actions.listRepoWorkflows({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -22,12 +28,11 @@ jobs:
               output += workflow.name + ":";
               output += workflow.id + "<br>";
               
-              const usage = await github.rest.actions.getWorkflowUsage({
+              const usage = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: workflow.id,
+                run_id: workflow.id,
               });
-              console.log(JSON.stringify(usage));
             }
             await core.summary
               .addHeading('Workflows report')
