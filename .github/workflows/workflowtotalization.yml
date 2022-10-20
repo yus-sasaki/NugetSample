@@ -31,11 +31,9 @@ jobs:
                 repo: context.repo.repo,
                 run_id: workflow.id,
               });
-              
-              console.log(JSON.stringify(run.data.jobs));
-              
-              console.log(JSON.stringify(run.data.jobs.started_at));
-              console.log(JSON.stringify(run.data.jobs.completed_at));
+                      
+              console.log(JSON.stringify(run.data.jobs[0].started_at));
+              console.log(JSON.stringify(run.data.jobs[0].completed_at));
               
               var date1 = new Date(run.data.jobs.started_at);
               var date2 = new Date(run.data.jobs.completed_at);
