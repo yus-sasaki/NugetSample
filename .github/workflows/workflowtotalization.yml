@@ -22,10 +22,6 @@ jobs:
             var worlflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
-              if(!(id in worlflows)){
-                worlflows[id] = 0;
-              }
-              console.log(worlflows[id]);
 
               const run = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
