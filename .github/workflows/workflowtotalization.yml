@@ -31,8 +31,8 @@ jobs:
                 repo: context.repo.repo,
                 run_id: workflow.id,
               });              
-              var date1 = new Date(run.data.jobs.started_at);
-              var date2 = new Date(run.data.jobs.completed_at);
+              var date1 = new Date(run.data.jobs[0].started_at);
+              var date2 = new Date(run.data.jobs[0].completed_at);
               console.log(JSON.stringify(date1));
               console.log(JSON.stringify(date2));
               worlflows[id] += (date2.getTime() - date1.getTime());
