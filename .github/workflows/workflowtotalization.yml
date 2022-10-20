@@ -28,7 +28,6 @@ jobs:
                 workflow_id: workflow.id,
               });
               output += JSON.stringify(usage);
-              #console.log(JSON.stringify(usage));
             }
             await core.summary
               .addHeading('Workflows report')
