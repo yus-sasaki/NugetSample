@@ -22,12 +22,13 @@ jobs:
               output += workflow.name + ":";
               output += workflow.id + "<br>";
               
-              const usage = await github.rest.actions.listWorkflowRuns({
+              const usage = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                workflow_id: workflow.id,
+                run_id: workflow.id,
+                filter: latest,
               });
-              output += JSON.stringify(usage);
+              console.log(JSON.stringify(usage));
             }
             await core.summary
               .addHeading('Workflows report')
