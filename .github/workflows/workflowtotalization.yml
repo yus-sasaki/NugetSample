@@ -22,7 +22,6 @@ jobs:
             var worlflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
-
               const run = await github.rest.actions.listJobsForWorkflowRun({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -31,11 +30,8 @@ jobs:
               var date1 = new Date(run.data.jobs[0].started_at);
               var date2 = new Date(run.data.jobs[0].completed_at);
               worlflows[id] += (date2.getTime() - date1.getTime());
-            }
-            
-            let output = "";
-            for(let key of worlflows){
-              output += key + " : " + worlflows[key] + "<br>";
+              
+              output +=  id + " : " + worlflows[id] + "<br>";
             }
             
             await core.summary
