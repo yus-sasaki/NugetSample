@@ -21,6 +21,14 @@ jobs:
             for(let workflow of result.data.workflows){
               output += workflow.name + ":";
               output += workflow.id + "<br>";
+              
+              const usage = github.rest.actions.getWorkflowUsage({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflow.id,
+              });
+              
+              console.log(JSON.stringify(usage));
             }
             await core.summary
               .addHeading('Workflows report')
