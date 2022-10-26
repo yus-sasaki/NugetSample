@@ -6,16 +6,16 @@ on:
       method:
         description: '直近1ヶ月を取得するか、手動で取得期間を入力するか選択してください'
         required: true
-        default: 'month'
+        default: '1month'
         type: choice
         options:
-        - month
+        - 1month
         - manual
       daystart:
-        description: '実績状況の取得開始日をyy-mm-ddで入力してください。（例：2022-10-26）'
+        description: '[manual選択時]実績状況の取得開始日をyy-mm-ddで入力してください。（例：2022-10-26）'
         type: string
       dayend:
-        description: '実績状況の取得終了日をyy-mm-ddで入力してください。（例：2022-10-28）'
+        description: '[manual選択時]実績状況の取得終了日をyy-mm-ddで入力してください。（例：2022-10-28）'
         type: string
 
 permissions:
