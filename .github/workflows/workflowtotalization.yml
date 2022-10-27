@@ -62,6 +62,14 @@ jobs:
               }
             }
             
+            const d1 = new Date();
+            while (true) {
+              const d2 = new Date();
+              if (d2 - d1 > 2000) {
+                break;
+              }
+            }
+
             let output = "";
             for(let key in workflows){
               output +=  key + " : " + workflows[key] + "s<br>";
