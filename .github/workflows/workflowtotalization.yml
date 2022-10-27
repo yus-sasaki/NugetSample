@@ -25,7 +25,8 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:   
-      - name: print log
+      - name: created settings
+        if: ${{ github.event.inputs.method == '1month' }}
         run: echo "Hello! ${{ github.event.inputs.method }}"
       - uses: actions/github-script@v6
         with:
