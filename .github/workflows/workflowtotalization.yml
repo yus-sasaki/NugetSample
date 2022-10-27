@@ -28,7 +28,7 @@ jobs:
       - name: created settings
         if: ${{ github.event.inputs.method == '1month' }}
         run: |
-          echo "CREATED=>2022-10-19" >> $GITHUB_ENV
+          echo "CREATED='>2022-10-19'" >> $GITHUB_ENV
           :
       - uses: actions/github-script@v6
         with:
