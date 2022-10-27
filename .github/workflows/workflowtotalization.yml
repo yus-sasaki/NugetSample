@@ -27,14 +27,14 @@ jobs:
     steps:   
       - name: created settings
         if: ${{ github.event.inputs.method == '1month' }}
-        run: echo "Hello! ${{ github.event.inputs.method }}"
+        run: Created = '>2022-10-19'
       - uses: actions/github-script@v6
         with:
           script: |
             const result = await github.rest.actions.listWorkflowRunsForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              created: '>2022-10-19'
+              created: ${Created}
             })
             
             var worlflows = {};
