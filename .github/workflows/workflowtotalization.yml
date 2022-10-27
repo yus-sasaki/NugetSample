@@ -44,7 +44,7 @@ jobs:
               created: ${{ env.CREATED }}
             })
             
-            var worlflows = {};
+            var workflows = {};
             let output = "";
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
