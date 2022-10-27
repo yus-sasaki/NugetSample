@@ -25,17 +25,15 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:
-      - name: Set current datetime as env variable
+      - if: ${{ github.event.inputs.method == '1month' }}
         env:
           TZ: 'Asia/Tokyo' # タイムゾーン指定
-        run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-      - if: ${{ github.event.inputs.method == '1month' }}
         run: |
-          echo "CREATED='>2022-10-19'" >> $GITHUB_ENV
+          echo "CREATED='>$(date --date='1 months' +'%Y-%m-%d')'" >> $GITHUB_ENV
           :
       - if: ${{ github.event.inputs.method == 'manual' }}
         run: |
-          echo "CREATED='${{ github.event.inputs.daystart}}..${{ github.event.inputs.dayend}}'" >> $GITHUB_ENV
+          echo "CREATED='${{ github.event.inputs.daystart }}..${{ github.event.inputs.dayend }}'" >> $GITHUB_ENV
           :
       - uses: actions/github-script@v6
         with:
