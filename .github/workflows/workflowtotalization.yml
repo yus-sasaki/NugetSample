@@ -56,8 +56,10 @@ jobs:
               if(diff > 0){
                 if(workflow.name in workflows){
                   workflows[workflow.name] += diff / 1000
+                  console.log(workflow.name : workflows[workflow.name])
                 } else {
                   workflows[workflow.name] = diff / 1000
+                  console.log(workflow.name : workflows[workflow.name])
                 }
               }
             }
@@ -65,6 +67,7 @@ jobs:
             let output = "";
             for(let key in workflows){
               output =  key + " : " + workflows[key] + "s<br>";
+              console.log(key : workflows[key])
             }
             
             await core.summary
