@@ -63,7 +63,7 @@ jobs:
                 }
               }
             }
-            
+            console.log(Object.keys(workflows))
             let output = "";
             for(let key in workflows){
               output =  key + " : " + workflows[key] + "s<br>";
