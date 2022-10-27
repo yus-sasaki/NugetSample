@@ -55,7 +55,13 @@ jobs:
               });              
               var diff = (new Date(run.data.jobs[0].completed_at).getTime()) - (new Date(run.data.jobs[0].started_at).getTime());
               if(diff > 0){
-                output +=  workflow.name + " : " + (diff / 1000) + "s<br>";
+                if(workflow.name in workflows){
+                  workflows[workflow.name] += diff / 1000
+                  console.log(workflows[workflow.name])
+                } else {
+                  workflows[workflow.name] = diff / 1000
+                  console.log(workflows[workflow.name])
+                }
               }
             }
             
