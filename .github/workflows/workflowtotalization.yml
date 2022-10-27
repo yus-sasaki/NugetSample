@@ -25,6 +25,8 @@ jobs:
   workflowtotalization:
     runs-on: ubuntu-latest
     steps:   
+      - name: print log
+        run: echo "Hello! ${{ github.event.method.name }}"
       - uses: actions/github-script@v6
         with:
           script: |
