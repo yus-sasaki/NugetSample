@@ -44,8 +44,7 @@ jobs:
               created: ${{ env.CREATED }}
             })
             
-            var workflows = {};
-            let output = "";
+            let workflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
               const run = await github.rest.actions.listJobsForWorkflowRun({
@@ -57,12 +56,15 @@ jobs:
               if(diff > 0){
                 if(workflow.name in workflows){
                   workflows[workflow.name] += diff / 1000
-                  console.log(workflows[workflow.name])
                 } else {
                   workflows[workflow.name] = diff / 1000
-                  console.log(workflows[workflow.name])
                 }
               }
+            }
+            
+            let output = "";
+            for(let key in workflows){
+              output =  key + " : " + workflows[key] + "s<br>";
             }
             
             await core.summary
