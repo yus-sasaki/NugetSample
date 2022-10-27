@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:   
       - name: print log
-        run: echo "Hello! ${{ github.event.method.name }}"
+        run: echo "Hello! ${{ github.event.inputs.method }}"
       - uses: actions/github-script@v6
         with:
           script: |
