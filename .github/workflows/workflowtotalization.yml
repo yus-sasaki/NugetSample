@@ -44,7 +44,7 @@ jobs:
               created: ${{ env.CREATED }}
             })
             
-            let workflows = {};
+            const workflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
               const run = await github.rest.actions.listJobsForWorkflowRun({
@@ -65,7 +65,7 @@ jobs:
             const d1 = new Date();
             while (true) {
               const d2 = new Date();
-              if (d2 - d1 > 2000) {
+              if (d2 - d1 > 5000) {
                 break;
               }
             }
