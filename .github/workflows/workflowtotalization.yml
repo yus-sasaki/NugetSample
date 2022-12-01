@@ -62,12 +62,16 @@ jobs:
               }
             }
             
-            let output = "";
+            let output = "[";
             for(let key in workflows){
-              output +=  key + " : " + workflows[key] + "s<br>";
+              output += "[" + key + " : " + workflows[key] + "s<br>";
             }
+            output += "]";
             
             await core.summary
               .addHeading('Workflows report')
-              .addRaw(output)
+              .addTable([
+                [{data: `workflow`, {header: true}, {data: `Result`, header: true}],
+                [output],
+              ])
               .write()
