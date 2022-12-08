@@ -72,6 +72,6 @@ jobs:
               .addHeading('Workflows report')
               .addTable([
                 [{data: `workflow`, {header: true}, {data: `Result`, header: true}],
-                [output],
+                [Object.keys(workflows)[0], workflow[0]],
               ])
               .write()
