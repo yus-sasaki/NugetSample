@@ -71,7 +71,7 @@ jobs:
             await core.summary
               .addHeading('Workflows report')
               .addTable([
-                [{data: `workflow`}, {header: true}, {data: `Result`, header: true}],
+                [{data: `workflow`, header: true}, {data: `Result`, header: true}],
                 [Object.keys(workflows)[0], workflows[0]],
               ])
               .write()
