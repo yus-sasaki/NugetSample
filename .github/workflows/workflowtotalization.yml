@@ -71,7 +71,9 @@ jobs:
             await core.summary
               .addHeading('Workflows report')
               .addTable([
-                [{data: `workflow`, header: true}, {data: `Result`, header: true}],
-                [Object.keys(workflows)[0], workflows[0]],
+                [{data: 'File', header: true}, {data: 'Result', header: true}],
+                ['foo.js', 'Pass ✅'],
+                ['bar.js', 'Fail ❌'],
+                ['foo.js', 'Pass ✅']
               ])
               .write()
