@@ -72,8 +72,8 @@ jobs:
               .addHeading('Workflows report')
               .addTable([
                 [{data: 'workflow', header: true}, {data: 'Result', header: true}],
-                [workflows[0], workflows[0]],
+                ['workflows[0]', 'workflows[0]'],
                 ['bar.js', 'Fail ❌'],
-                ['foo.js', 'Pass ✅']
+                ['foo.js', 'Pass ✅'],
               ])
               .write()
