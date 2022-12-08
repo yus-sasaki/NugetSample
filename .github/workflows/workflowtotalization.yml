@@ -68,12 +68,11 @@ jobs:
             }
             output += "]";
             
-            await core.summary
-              .addHeading('Workflows report')
-              .addTable([
-                [{data: 'workflow', header: true}, {data: 'Result', header: true}],
-                ['workflows[0]', 'workflows[0]'],
-                ['bar.js', 'Fail ❌'],
-                ['foo.js', 'Pass ✅'],
-              ])
-              .write()
+            const headings = ['one', 'two', 'three', 'four', 'five', 'six']
+            headings.forEach((text, i) => {
+              core.markdownSummary.addHeading(text, i + 1)
+            })
+
+            await core.markdownSummary.write()
+            
+
