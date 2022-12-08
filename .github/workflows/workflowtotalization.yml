@@ -63,7 +63,7 @@ jobs:
             }
             
             await core.markdownSummary.addHeading('Workflows report')
-            Object.keys(workflows).forEach(w => core.markdownSummary.addTable(w));
+            Object.keys(workflows).forEach(w => core.markdownSummary.addDetails(w));
 
             await core.markdownSummary.write()
             
