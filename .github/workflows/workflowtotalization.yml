@@ -72,7 +72,7 @@ jobs:
               .addHeading('Workflows report')
               .addTable([
                 [{data: 'workflow', header: true}, {data: 'Result', header: true}],
-                [Object.keys(workflows)[0], workflows[0]],
+                [workflows[0], workflows[0]],
                 ['bar.js', 'Fail ❌'],
                 ['foo.js', 'Pass ✅']
               ])
