@@ -62,15 +62,9 @@ jobs:
               }
             }
             
-            let output = "[";
-            for(let key in workflows){
-              output += "[" + key + " : " + workflows[key] + "s<br>";
-            }
-            output += "]";
-            
-            const headings = ['one', 'two', 'three', 'four', 'five', 'six']
-            headings.forEach((text, i) => {
-              core.markdownSummary.addHeading(text, i + 1)
+            await core.markdownSummary.addHeading('Workflows report')
+            workflows.forEach((w) => {
+              core.markdownSummary.addTable(w)
             })
 
             await core.markdownSummary.write()
