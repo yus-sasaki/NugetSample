@@ -68,12 +68,10 @@ jobs:
                 { data: 'Name', header: true },
                 { data: 'Value', header: true },
               ],
-              [
-                Object.keys(workflows).map(function(w)
-                {
-                  return w, workflows[w]
-                })
-              ],
+              Object.keys(workflows).map(function(w)
+              {
+                return w, workflows[w]
+              })
             ]);
             await core.markdownSummary.write()
             
