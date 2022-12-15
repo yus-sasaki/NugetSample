@@ -63,14 +63,12 @@ jobs:
             }
             
             await core.markdownSummary.addHeading('Workflows report')
-            summaryTableRow = new SummaryTableRow();
-            Object.keys(workflows).forEach(w => summaryTableRow.Add(key,w));
             core.markdownSummary.addTable([
               { data: 'Name', header: true },
               { data: 'Value', header: true },
             ],
             [
-              summaryTableRow
+              Object.keys(workflows).forEach(w => (key,w));
             ],);
             await core.markdownSummary.write()
             
