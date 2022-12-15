@@ -68,7 +68,7 @@ jobs:
               { data: 'Value', header: true },
             ],
             [
-              Object.keys(workflows).forEach(w => (key,w));
+              Object.keys(workflows).forEach(w => (key,w))
             ],);
             await core.markdownSummary.write()
             
