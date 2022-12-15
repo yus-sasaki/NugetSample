@@ -64,12 +64,8 @@ jobs:
             
             await core.markdownSummary.addHeading('Workflows report')
             core.markdownSummary.addTable([
-              { data: 'Name', header: true },
-              { data: 'Value', header: true },
-            ],
-            [
               Object.keys(workflows).map(function(w){return (w,workflows[w])})
-            ],);
+            ]);
             await core.markdownSummary.write()
             
 
