@@ -70,7 +70,7 @@ jobs:
               ],
               Object.keys(workflows).map(function(w)
               {
-                return '[' + w + "," + workflows[w] + ']',
+                return "[" + w + "," + workflows[w] + "],"
               })
             ]);
             await core.markdownSummary.write()
