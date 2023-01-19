@@ -48,6 +48,7 @@ jobs:
               [{ data: 'Name', header: true}, { data: 'Value', header: true }],
             ]
             let workflows = {};
+            let output = "";
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
               const run = await github.rest.actions.listJobsForWorkflowRun({
@@ -66,8 +67,13 @@ jobs:
                 }
               }
             }
+            
+            for(key i of worlflows)
+            {
+              output += key + " : " + worlflows[i] + "<br>";
+            }
                         
             await core.markdownSummary
             .addHeading('Workflows report')
-            .addTable(parametersTable)
+            .addTable(output)
             .write()
