@@ -59,10 +59,10 @@ jobs:
               if(diff > 0){
                 if(workflow.name in workflows){
                   workflows[workflow.name] += diff / 1000
-                  parametersTable.push([workflow.name, workflows[workflow.name]])
+                  parametersTable.push([workflow.name, diff / 1000])
                 } else {
                   workflows[workflow.name] = diff / 1000
-                  parametersTable.push([workflow.name, workflows[workflow.name]])
+                  parametersTable.push([workflow.name, diff / 1000])
                 }
               }
             }
