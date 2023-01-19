@@ -72,7 +72,7 @@ jobs:
             
             Object.keys(workflows).map(function(w)
             {
-              return  core.markdownSummary.addTable(W, workflows[w])
+              return  core.markdownSummary.addTable(w, workflows[w])
             })
 
             await core.markdownSummary.write()
