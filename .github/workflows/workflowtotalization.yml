@@ -44,6 +44,9 @@ jobs:
               created: ${{ env.CREATED }}
             })
             
+            parametersTable = [
+              [{ data: 'Name', header: true}, { data: 'Value', header: true }],
+            ]
             let workflows = {};
             for(let workflow of result.data.workflow_runs){
               let id = workflow.id;
@@ -56,23 +59,14 @@ jobs:
               if(diff > 0){
                 if(workflow.name in workflows){
                   workflows[workflow.name] += diff / 1000
+                  parametersTable.push([workflow.name, workflows[workflow.name]])
                 } else {
                   workflows[workflow.name] = diff / 1000
+                  parametersTable.push([workflow.name, workflows[workflow.name]])
                 }
               }
             }
-            
-            parametersTable = [
-              [{ data: 'Name', header: true}, { data: 'Value', header: true }],
-            ]
-
-            Object.keys(workflows).forEach(w =>
-              {
-                value = workflows[w]
-                parametersTable.push([w, value])
-              }
-            );
-            
+                        
             await core.markdownSummary
             .addHeading('Workflows report')
             .addTable(parametersTable)
