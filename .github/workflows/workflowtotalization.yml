@@ -62,14 +62,14 @@ jobs:
               }
             }
             
-            parametersTable = [
+            resultsTable = [
               [{ data: 'Name', header: true}, { data: 'Value', header: true }],
             ]
             for(let key in workflows){
-              parametersTable.push([key, workflows[key]])
+              resultsTable.push([key, workflows[key]])
             }
             
             await core.summary
               .addHeading('Workflows report')
-              .addRaw(parametersTable)
+              .addTable(resultsTable)
               .write()
