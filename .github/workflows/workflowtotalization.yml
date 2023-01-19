@@ -62,14 +62,11 @@ jobs:
               }
             }
             
-              parametersTable = [
-                [{ data: 'Name', header: true}, { data: 'Value', header: true }],
-                ['workflow', 'workflows[w]']
-              ]
+            parametersTable = [
+              [{ data: 'Name', header: true}, { data: 'Value', header: true }],
+            ]
 
-              for(let key in workflows){
-                parametersTable.push([key, workflows[key]])
-              }
+            Object.keys(workflows).forEach(w => parametersTable.push([w, workflows[w]]));
             
             await core.markdownSummary
             .addHeading('Workflows report')
