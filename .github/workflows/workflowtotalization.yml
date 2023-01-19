@@ -68,12 +68,11 @@ jobs:
             }
             
             let output = "";
-            for(let key of worlflows)
-            {
-              output += key + " : " + worlflows[key] + "<br>";
+            for(let key in workflows){
+              output +=  key + " : " + workflows[key] + "s<br>";
             }
-                        
-            await core.markdownSummary
-            .addHeading('Workflows report')
-            .addTable(output)
-            .write()
+            
+            await core.summary
+              .addHeading('Workflows report')
+              .addRaw(output)
+              .write()
