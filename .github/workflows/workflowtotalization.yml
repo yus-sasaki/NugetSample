@@ -65,8 +65,10 @@ jobs:
             resultsTable = [
               [{ data: 'Name', header: true}, { data: 'Value', header: true }],
             ]
+            let value = "";
             for(let key in workflows){
-              resultsTable.push([key, workflows[key]])
+              value = workflows[key]
+              resultsTable.push([key, value])
             }
             
             await core.summary
