@@ -62,23 +62,16 @@ jobs:
               }
             }
             
-            await core.markdownSummary.addHeading('Workflows report')
-            core.markdownSummary.addTable([
-              [
-                { data: 'Name', header: true },
-                { data: 'Value', header: true },
+              parametersTable = [
+                [{ data: 'Name', header: true}, { data: 'Value', header: true }],
+                ['workflow', 'workflows[w]']
               ]
-            ]);
-            
-            Object.keys(workflows).map(function(w)
-            {
-              return  core.markdownSummary.addTable([
-                [
-                  {w, workflows[w]},
-                ]
-              ]);
-            });
 
-            await core.markdownSummary.write()
+              for(let key in workflows){
+                parametersTable.push([key, workflows[key]])
+              }
             
-
+            await core.markdownSummary
+            .addHeading('Workflows report')
+            .addTable(parametersTable)
+            .write()
