@@ -63,7 +63,7 @@ jobs:
             }
             
             resultsTable = [
-              [{ data: 'Name', header: true}, { data: 'Value', header: true }],
+              [{ data: 'ワークフロー名', header: true}, { data: '稼働実績', header: true }],
             ]
             
             for(let key in workflows)
