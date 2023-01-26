@@ -71,7 +71,7 @@ jobs:
             {
               value = workflows[key];
               output = output + "&&" + value;
-              resultsTable.push([key, value.toSting()]);
+              resultsTable.push([key, value.toSting]);
             }
             
             resultsTable.push(["OUT", output]);
