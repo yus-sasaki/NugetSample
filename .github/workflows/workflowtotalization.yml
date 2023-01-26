@@ -66,10 +66,14 @@ jobs:
               [{ data: 'Name', header: true}, { data: 'Value', header: true }],
             ]
             let value = "";
+            let output = ""; 
             for(let key in workflows){
-              value = workflows[key]
-              resultsTable.push([key, value])
+              value = workflows[key];
+              output += value;
+              resultsTable.push([key, value]);
             }
+            
+            resultsTable.push([OUT, output]);
             
             await core.summary
               .addHeading('Workflows report')
