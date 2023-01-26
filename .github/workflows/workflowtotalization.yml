@@ -69,9 +69,9 @@ jobs:
             let output = ""; 
             for(let key in workflows)
             {
-              value = workflows[key];
+              value = workflows[key].toSting;
               output = output + "&&" + value;
-              resultsTable.push([key, value.toSting]);
+              resultsTable.push([key, value]);
             }
             
             resultsTable.push(["OUT", output]);
