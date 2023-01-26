@@ -71,7 +71,7 @@ jobs:
             {
               value = workflows[key];
               output = output + "&&" + value;
-              resultsTable.push([key, "111"]);
+              resultsTable.push([key,  value + "s"]);
             }
             
             resultsTable.push(["OUT", output]);
