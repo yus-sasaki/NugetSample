@@ -11,8 +11,13 @@ on:
 jobs:
   build:
     name: release-build
-    runs-on: windows-latest
+    runs-on: windows-latest   
+      
     steps:
+      - name: Create ReleaseName
+        run: |
+          echo "RELEASENAME=${${{ github.ref//Release /}}'" >> $GITHUB_ENV
+          :
       # リポジトリからファイルをチェックアウト
       - name: Checkout
         uses: actions/checkout@v3
@@ -51,7 +56,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: |
+          body: ""
           draft: false
           prerelease: false
       
