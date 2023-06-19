@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Create ReleaseName
         run: |
-          echo "NAME='${{ github.ref}}'" >> $GITHUB_ENV 
+          echo "NAME=%${{ github.ref}}:'_Release'=''%" >> $GITHUB_ENV 
       # リポジトリからファイルをチェックアウト
       - name: Checkout
         uses: actions/checkout@v3
@@ -54,7 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref}} | ts -d '_Release'
+          release_name: ${{ env.NAME}}
           body: "Changes in this Release"
           draft: false
           prerelease: false
