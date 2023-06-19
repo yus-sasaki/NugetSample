@@ -18,7 +18,7 @@ jobs:
         run: |
           RELEASE = ${{ github.ref}}
           echo "RELEASENAME=${RELEASE//_Release /}'" >> $GITHUB_ENV
-          
+          :
       # リポジトリからファイルをチェックアウト
       - name: Checkout
         uses: actions/checkout@v3
