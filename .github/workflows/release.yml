@@ -17,8 +17,6 @@ jobs:
       - name: Create ReleaseName
         run: |
           echo "NAME='${{ github.ref}}'" >> $GITHUB_ENV 
-          :
-
       # リポジトリからファイルをチェックアウト
       - name: Checkout
         uses: actions/checkout@v3
