@@ -38,9 +38,9 @@ jobs:
       - name: Build solution
         run: dotnet publish src\SlackNotification.sln -c Release -o ".\release" 
       # Release Zipファイル生成
-      - name: Zip build file
-        run: |
-          powershell compress-archive src\SlackNotification\release\* release.zip
+      #- name: Zip build file
+      #  run: |
+      #    powershell compress-archive src\SlackNotification\release\* release.zip
       
       # GitHubにReleaseを生成
       - name: Create release
@@ -51,17 +51,18 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
+          body: |
           draft: false
           prerelease: false
       
       # 生成したReleaseにZipをアップロード
-      - name: Upload Release Asset
-        id: upload-release-asset-windows
-        uses: actions/upload-release-asset@v1.0.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: release.zip
-          asset_name: SlackNotification.zip
-          asset_content_type: application/zip
+      #- name: Upload Release Asset
+      #  id: upload-release-asset-windows
+      #  uses: actions/upload-release-asset@v1.0.2
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: release.zip
+      #    asset_name: SlackNotification.zip
+      #    asset_content_type: application/zip
