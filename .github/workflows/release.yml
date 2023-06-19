@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Create ReleaseName
         run: |
-          echo "RELEASENAME=${{ github.ref}}| tr -d '_Release'" >> $GITHUB_ENV
+          echo "RELEASENAME='${{ github.ref}}' | tr -d '_Release'" >> $GITHUB_ENV
 
       # リポジトリからファイルをチェックアウト
       - name: Checkout
