@@ -1,0 +1,74 @@
+name: release
+
+# V*.*.*_Release のタグがPushされた場合にこのワークフローは動作します
+# 参考サイト：https://knhk.hatenablog.com/entry/2020/05/19/173000
+on:
+  push:
+    tags:
+      - 'V*.*.*_Release'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: release-build
+    runs-on: windows-latest
+    steps:
+      # リポジトリからファイルをチェックアウト
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # msbuild のセットアップ
+      - name: Setup msbuild
+        uses: microsoft/setup-msbuild@v1.0.2
+        
+      # nuget のセットアップをする
+      - name: Setup NuGet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      
+      # 必要なパッケージを追加する
+      - name: Add GitHub as a package source
+        run: dotnet nuget add source "https://nuget.pkg.github.com/miles-team/index.json" -n github -u ${{ secrets.NUGET_GITHUB_USER }} -p ${{ secrets.NUGET_GITHUB_TOKEN }} --store-password-in-clear-text
+
+      - name: Add DevExpress as a package source
+        run: dotnet nuget add source https://nuget.devexpress.com/api -n DXFeed -u DevExpress -p ${{ secrets.DEVEXPRESS_AUTHORIZATION_KEY }} --store-password-in-clear-text
+
+      # solution ファイルの状態を復元する
+      - name: Restore the application
+        run: msbuild src\Analytics.sln /t:Restore /p:Configuration=Release
+
+      # Releaseビルド実行
+      # 参考サイト：https://zenn.dev/shimat/articles/d9ed0345c9866e
+      - name: Build solution
+        run: |
+          msbuild src\Analytics.sln /t:build /p:OutputPath=".\release" /p:Configuration=Release
+        
+      # Release Zipファイル生成
+      - name: Zip build file
+        run: |
+          powershell compress-archive src\Apps\TimeTrackerAnalytics\TimeTrackerAnalytics.App\release\* release.zip
+      
+      # GitHubにReleaseを生成
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      
+      # 生成したReleaseにZipをアップロード
+      - name: Upload Release Asset
+        id: upload-release-asset-windows
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release.zip
+          asset_name: AnalyticsDesktop.zip
+          asset_content_type: application/zip
