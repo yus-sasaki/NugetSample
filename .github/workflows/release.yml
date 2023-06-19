@@ -36,7 +36,7 @@ jobs:
       # Releaseビルド実行
       # 参考サイト：https://zenn.dev/shimat/articles/d9ed0345c9866e
       - name: Build solution
-        run: dotnet publish src\Analytics.sln -c Release -o ".\release" 
+        run: dotnet publish src\SlackNotification.sln -c Release -o ".\release" 
       # Release Zipファイル生成
       - name: Zip build file
         run: |
